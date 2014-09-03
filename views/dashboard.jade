@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  h1 Dashboard
+  hr
+  .row
+    .col-sm-3
+     div.counter.success
+        h2 Successful
+        p.count {{success}}
+    .col-sm-3
+      div.counter.error
+        h2 Failed
+        p.count {{error}}
+    .col-sm-3
+      div.counter.warn
+        h2 Warning
+        p.count {{warn}}
+    .col-sm-3
+      div.counter
+        h2 Total
+        p.count {{total}}
+  hr
+  section
+    table.table.table-striped.client-list
+      thead
+        tr
+          th #
+          th Name
+          th Status
+          th Date
+        tbody
+          tr(ng-repeat="item in items.overdue_cases | orderBy:sortingOrder:reverse")
+            td {{item.id}}
+            td {{item.status}}
+            td {{item.name}}
+            td {{item.date}}
+          tr.loading_icon
+            td(colspan="4")
+              progress.center-block
